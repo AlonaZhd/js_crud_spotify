@@ -1,0 +1,35 @@
+@use '../../lib/servises.scss' as s;
+
+@use '../../lib/spotify.scss' as spotify;
+    
+.main__content {
+    @extend .column;
+    height: 100vh;
+    width: 100%;
+    max-width: 700px;
+    padding: s.space(9) s.space(1);
+    gap: s.space(15);
+
+    border: 1px solid #fff;
+}
+
+.playlist {
+    .title {
+        font-size: s.size(textSubtitle);
+    }
+}
+
+.add-button {
+    @extend .row;
+
+    .icon {
+        padding: s.space(6);
+        background-color: #242424;
+        margin-right: s.space(6);
+    }
+}
+
+.track-list {
+    @extend .column;
+    gap: s.space(8);
+}

@@ -1,0 +1,95 @@
+@use '../lib/servises.scss' as s;
+
+a {
+    text-decoration: none;
+    color: inherit;
+
+    transition: opacity 0.6s;
+
+    &:hover {
+        opacity: 0.6;
+    }
+}
+
+.column {
+    display: flex;
+    flex-direction: column;    
+}
+
+.column--center {
+    @extend .column;
+    align-items: center;
+}
+
+.row {
+    display: flex;
+    align-items: center
+}
+
+.row--between {
+    @extend .row;
+    justify-content: space-between;
+}
+
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-weight: 500;
+    font-size: s.size(textTitle);
+}
+
+.title--center{
+    @extend .title;
+    text-align: center;
+}
+
+.text {
+    font-weight: 400;
+    font-size: s.size(text);
+}
+
+.main {
+    @extend .column--center;
+    background-color: s.color(dark);
+    color: s.color(light);
+}
+
+.track {
+    display: grid;
+    grid-template-columns: 92px 1fr 42px;
+    align-items: center;
+    gap: s.space(6);
+    
+    &__image {
+        @extend .icon;
+        width: 92px;
+        height: 92px;
+    }
+
+    &__content {
+        @extend .column;
+        gap: s.space(3);
+
+        .track__title {
+            @extend .title;
+            font-size: s.size(textDescription);
+        }
+
+        .track__text {
+            @extend .text;
+            font-size: s.size(textSmall);
+        }
+    }
+
+    &__icon {
+        @extend .icon;
+        width: 42px;
+        height: 42px;
+        border: 1px solid #BABABA;
+        border-radius: 50%;
+    }
+}
