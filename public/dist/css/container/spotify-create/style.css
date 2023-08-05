@@ -1,0 +1,126 @@
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.6s;
+}
+a:hover {
+  opacity: 0.6;
+}
+
+.column, .track__content, .column--center, .create .form, .main {
+  display: flex;
+  flex-direction: column;
+}
+
+.column--center, .create .form, .main {
+  align-items: center;
+}
+
+.row, .row--between {
+  display: flex;
+  align-items: center;
+}
+
+.row--between {
+  justify-content: space-between;
+}
+
+.icon, .create, .create .form__button, .track__icon, .track__image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title, .track__content .track__title, .title--center, .create .form__field {
+  font-weight: 500;
+  font-size: 40px;
+}
+
+.title--center, .create .form__field {
+  text-align: center;
+}
+
+.text, .track__content .track__text {
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.main {
+  background-color: #121212;
+  color: #d4d4d4;
+}
+
+.track {
+  display: grid;
+  grid-template-columns: 92px 1fr 42px;
+  align-items: center;
+  gap: 24px;
+}
+.track__image {
+  width: 92px;
+  height: 92px;
+}
+.track__content {
+  gap: 12px;
+}
+.track__content .track__title {
+  font-size: 24px;
+}
+.track__content .track__text {
+  font-size: 16px;
+}
+.track__icon {
+  width: 42px;
+  height: 42px;
+  border: 1px solid #BABABA;
+  border-radius: 50%;
+}
+
+.main__content {
+  height: 100vh;
+  width: 100%;
+  max-width: 700px;
+  padding: 36px 4px;
+  border: 1px solid #fff;
+}
+
+.create {
+  flex-direction: column;
+  position: relative;
+  gap: 80px;
+}
+.create .icon__close {
+  position: absolute;
+  top: 36px;
+  right: 4px;
+}
+.create .header {
+  display: flex;
+  justify-content: end;
+}
+.create .title {
+  font-size: 20px;
+}
+.create .form {
+  gap: 60px;
+}
+.create .form__field {
+  font-size: 60px;
+  padding: 20px;
+  width: 90%;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #808080;
+}
+.create .form__button {
+  width: fit-content;
+  padding: 20px 40px;
+  border-radius: 40px;
+  background: #20D562;
+  color: #121212;
+  transition: opacity 0.6s;
+}
+.create .form__button:hover {
+  opacity: 0.7;
+}
+
+/*# sourceMappingURL=style.css.map */
