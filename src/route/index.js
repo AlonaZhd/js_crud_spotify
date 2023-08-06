@@ -130,6 +130,24 @@ router.get('/', function (req, res) {
   // res.render генерує нам HTML сторінку
 
   // ↙️ cюди вводимо назву файлу з сontainer
+  res.render('index', {
+    // вказуємо назву папки контейнера, в якій знаходяться наші стилі
+    style: 'index',
+
+    data: {},
+  })
+  // ↑↑ сюди вводимо JSON дані
+})
+
+// ================================================================
+
+// router.get Створює нам один ентпоїнт
+
+// ↙️ тут вводимо шлях (PATH) до сторінки
+router.get('/spotify-choose', function (req, res) {
+  // res.render генерує нам HTML сторінку
+
+  // ↙️ cюди вводимо назву файлу з сontainer
   res.render('spotify-choose', {
     // вказуємо назву папки контейнера, в якій знаходяться наші стилі
     style: 'spotify-choose',
