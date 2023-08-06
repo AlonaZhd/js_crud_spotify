@@ -1,41 +1,29 @@
 <main class="main">
+  {{#with data}}
   <section class="main__content">
     <header class="header">
       <h1 class="header__title">Моя бібліотека</h1>
-      <div class="header__icon">
-        <a href="/spotify-search" class="add-button">
-          <img src="/svg/tabler_plus.svg" alt="" class="icon">
+      <div class="header__icons">
+        <a href="/spotify-search" class="header__icon">
+          <img src="/svg/search.svg" alt="search" class="icon">
         </a>
-        <a href="/spotify-choose" class="add-button">
-          <img src="/svg/tabler_plus.svg" alt="" class="icon">
+        <a href="/spotify-choose" class="header__icon">
+          <img src="/svg/icon-add.svg" alt="add" class="icon">
         </a>
       </div>
     </header>
 
     <ul class="playlist__list">
-      <a href="/spotify-create">
+      {{#each list}}
+      <a href="/spotify-track-add?playlistId={{id}}" class="playlist__item">
+        <li class="playlist__content">
+          <img src="{{image}}" alt="" class="playlist__image">
+          <strong class="title">{{name}}</strong>
+          <p class="text">{{amount}} пісень</p>
+        </li>
       </a>
+      {{/each}}
     </ul>
-    {{!-- <ul class="choose">
-      <a href="/spotify-create">
-        <li class="choose__item">
-          <img src="/svg/playlist.svg" alt="" class="choose__image">
-          <div class="choose__content">
-            <strong class="title">Плейліст</strong>
-            <p class="choose__text">Створіть плейліст із піснями чи епізодами</p>
-          </div>
-        </li>
-      </a>
-
-      <a href="/spotify-create?isMix=true">
-        <li class="choose__item">
-          <img src="/svg/mixlist.svg" alt="" class="choose__image">
-          <div class="choose__content">
-            <strong class="title">Мікс</strong>
-            <p class="choose__text">Комбінуйте смаки в спільному плейлісті з друзями</p>
-          </div>
-        </li>
-      </a>
-    </ul> --}}
   </section>
+  {{/with}}
 </main>

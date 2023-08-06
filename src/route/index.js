@@ -78,15 +78,16 @@ class Playlist {
   // Статичне приватне поле для зберігання списку об'єктів Track
   static #list = []
 
-  constructor(name, author, image) {
+  constructor(name, image) {
     this.id = Math.floor(1000 + Math.random() * 9000) //Генеруємо випадкове id
     this.name = name
     this.tracks = []
+    this.image = image || '/img/my-playlist.jpg'
   }
 
   // Статичний метод для створення об'єкту Track і додавання його до списку #list
-  static create(name) {
-    const newPlaylist = new Playlist(name)
+  static create(name, image) {
+    const newPlaylist = new Playlist(name, image)
     this.#list.push(newPlaylist)
     return newPlaylist
   }
@@ -119,24 +120,89 @@ class Playlist {
       (track) => track.id !== trackId,
     )
   }
+
+  static findListByValue(name) {
+    return this.#list.filter((playlist) =>
+      playlist.name
+        .toLowerCase()
+        .includes(name.toLowerCase()),
+    )
+  }
 }
+
+Playlist.makeMix(
+  Playlist.create('Favorites', '/img/favorites.jpg'),
+)
+
+Playlist.makeMix(Playlist.create('Mixed', '/img/mixed.jpg'))
+
+Playlist.makeMix(
+  Playlist.create('Random', '/img/random.jpg'),
+)
+
+Playlist.makeMix(
+  Playlist.create('My playlist', '/img/my-playlist.jpg'),
+)
 
 // ================================================================
 
-// router.get Створює нам один ентпоїнт
-
-// ↙️ тут вводимо шлях (PATH) до сторінки
 router.get('/', function (req, res) {
-  // res.render генерує нам HTML сторінку
+  allTracks = Track.getList()
+  console.log(allTracks)
 
-  // ↙️ cюди вводимо назву файлу з сontainer
+  const allPlaylists = Playlist.getList()
+  console.log(allPlaylists)
+
   res.render('index', {
-    // вказуємо назву папки контейнера, в якій знаходяться наші стилі
     style: 'index',
 
-    data: {},
+    data: {
+      list: allPlaylists.map(({ tracks, ...rest }) => ({
+        ...rest,
+        amount: tracks.length,
+      })),
+    },
   })
-  // ↑↑ сюди вводимо JSON дані
+})
+
+// ================================================================
+
+router.get('/spotify-search', function (req, res) {
+  const value = ''
+  const list = Playlist.findListByValue(value)
+
+  res.render('spotify-search', {
+    style: 'spotify-search',
+
+    data: {
+      list: list.map(({ tracks, ...rest }) => ({
+        ...rest,
+        amount: tracks.length,
+      })),
+      value,
+    },
+  })
+})
+
+// ================================================================
+
+router.post('/spotify-search', function (req, res) {
+  const value = req.body.value || ''
+  const list = Playlist.findListByValue(value)
+
+  console.log(value)
+
+  res.render('spotify-search', {
+    style: 'spotify-search',
+
+    data: {
+      list: list.map(({ tracks, ...rest }) => ({
+        ...rest,
+        amount: tracks.length,
+      })),
+      value,
+    },
+  })
 })
 
 // ================================================================
@@ -283,7 +349,7 @@ router.get('/spotify-track-delete', function (req, res) {
 router.get('/spotify-track-add', function (req, res) {
   const playlistId = Number(req.query.playlistId)
   const playlist = Playlist.getById(playlistId)
-  const allTracks = Track.getList()
+  // const allTracks = Track.getList()
 
   console.log(playlistId, playlist, allTracks)
 

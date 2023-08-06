@@ -8,8 +8,7 @@
 
         <h3 class="title title--center">Назвіть плейліст</h3>
 
-        <form method="POST" action="/spotify-create{{#if data.isMix}}?isMix=true{{/if}}?playlistId={{data.playlistId}}"
-            class="form">
+        <form method="POST" action="/spotify-create{{#if data.isMix}}?isMix=true{{/if}}" class="form">
             <input type="text" class="form__field" placeholder="Ведіть назву" name="name">
             <button class="form__button">Створити</button>
         </form>
