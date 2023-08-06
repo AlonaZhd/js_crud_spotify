@@ -7,7 +7,7 @@ a:hover {
   opacity: 0.6;
 }
 
-.column, .main__content, .choose, .choose__content, .track__content, .column--center, .main {
+.column, .main__content, .playlist__list .playlist__content, .track__content, .column--center, .main {
   display: flex;
   flex-direction: column;
 }
@@ -16,16 +16,16 @@ a:hover {
   align-items: center;
 }
 
-.row, .choose__item, .row--between {
+.row, .row--between, .header, .header__icons {
   display: flex;
   align-items: center;
 }
 
-.row--between {
+.row--between, .header, .header__icons {
   justify-content: space-between;
 }
 
-.icon, .choose__image, .track__icon, .track__image {
+.icon, .header__icon, .playlist__list .playlist__image, .track__icon, .track__image {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,7 +40,7 @@ a:hover {
   text-align: center;
 }
 
-.text, .choose__content__text, .track__content .track__text {
+.text, .playlist__list .playlist__content__text, .track__content .track__text {
   font-weight: 400;
   font-size: 20px;
 }
@@ -79,28 +79,45 @@ a:hover {
 .main__content {
   min-height: 100vh;
   width: 100%;
-  max-width: 700px;
+  max-width: 730px;
   padding: 36px 4px;
   gap: 60px;
 }
 
-.choose {
-  gap: 40px;
+.header .header__title {
+  font-size: 40px;
 }
-.choose__item {
-  gap: 24px;
+.header__icons {
+  gap: 32px;
 }
-.choose__image {
-  width: 56px;
-  height: 56px;
+.header__icon {
+  width: 48px;
+  height: 48px;
 }
-.choose__content {
-  gap: 24px;
+.header__icon .icon, .header__icon .playlist__list .playlist__image, .playlist__list .header__icon .playlist__image, .header__icon .header__icon {
+  width: 100%;
+  height: 100%;
 }
-.choose__content .title {
+
+.playlist__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+}
+.playlist__list .playlist__item {
+  margin-bottom: 48px;
+}
+.playlist__list .playlist__image {
+  width: 345px;
+  height: 345px;
+}
+.playlist__list .playlist__content {
+  gap: 20px;
+}
+.playlist__list .playlist__content .title {
   font-size: 24px;
 }
-.choose__content__text {
+.playlist__list .playlist__content__text {
   font-size: 16px;
 }
 
