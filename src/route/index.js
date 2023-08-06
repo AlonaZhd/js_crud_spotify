@@ -37,7 +37,7 @@ Track.create(
 Track.create(
   'Baila Conmigo (Remix)',
   'Selena Gomez і Rauw Alejandro',
-  '/img/image_628.jpg',
+  '/img/image_630.jpg',
 )
 Track.create(
   'Shameless ',
@@ -47,9 +47,30 @@ Track.create(
 Track.create(
   'DÁKITI',
   'BAD BUNNY і JHAY',
-  '/img/image_630.jpg',
+  '/img/image_628.jpg',
 )
 Track.create('11 PM', 'Maluma', '/img/image_631.jpg')
+Track.create(
+  'Порічка',
+  'YAKTAK x KOLA',
+  '/img/image_632.jpg',
+)
+Track.create(
+  'Там У Тополі',
+  'Артем Пивоваров & NK',
+  '/img/image_633.jpg',
+)
+Track.create('Додому', 'Wellboy', '/img/image_634.jpg')
+Track.create(
+  'Люди',
+  'MamaRika & KOLA',
+  '/img/image_635.jpg',
+)
+Track.create(
+  'BRONIA',
+  'Jerry Heil & Ochman',
+  '/img/image_636.jpg',
+)
 
 console.log(Track.getList())
 
@@ -98,12 +119,6 @@ class Playlist {
       (track) => track.id !== trackId,
     )
   }
-
-  // addTrackById(trackId) {
-  //   this.tracks = this.tracks.filter(
-  //     (track) => track.id !== trackId,
-  //   )
-  // }
 }
 
 // ================================================================
@@ -237,6 +252,72 @@ router.get('/spotify-track-delete', function (req, res) {
   res.render('spotify-playlist', {
     style: 'spotify-playlist',
 
+    data: {
+      playlistId: playlist.id,
+      tracks: playlist.tracks,
+      name: playlist.name,
+    },
+  })
+})
+
+// ================================================================
+// Шлях GET для відображення сторінки, на якій можна додавати треки до плейліста
+router.get('/spotify-track-add', function (req, res) {
+  const playlistId = Number(req.query.playlistId)
+  const playlist = Playlist.getById(playlistId)
+  const allTracks = Track.getList()
+
+  console.log(playlistId, playlist, allTracks)
+
+  res.render('spotify-track-add', {
+    style: 'spotify-track-add',
+
+    data: {
+      playlistId: playlist.id,
+      tracks: allTracks,
+      // link: `/spotify-track-add?playlistId={{playlistId}}&trackId=={{id}}`,
+    },
+  })
+})
+
+// ================================================================
+// Шлях POST для додавання треку до плейліста
+router.post('/spotify-track-add', function (req, res) {
+  const playlistId = Number(req.body.playlistId)
+  const trackId = Number(req.body.trackId)
+
+  const playlist = Playlist.getById(playlistId)
+
+  if (!playlist) {
+    return res.render('alert', {
+      style: 'alert',
+      data: {
+        message: 'Помилка',
+        info: 'Такого плейліста не знайдено',
+        link: `/spotify-playlist?id=${playlistId}`,
+      },
+    })
+  }
+
+  const trackToAdd = Track.getList().find(
+    (track) => track.id === trackId,
+  )
+
+  if (!trackToAdd) {
+    return res.render('alert', {
+      style: 'alert',
+      data: {
+        message: 'Помилка',
+        info: 'Такого треку не знайдено',
+        link: `/spotify-track-add?playlistId=${playlistId}`,
+      },
+    })
+  }
+
+  playlist.tracks.push(trackToAdd)
+
+  res.render('spotify-playlist', {
+    style: 'spotify-playlist',
     data: {
       playlistId: playlist.id,
       tracks: playlist.tracks,

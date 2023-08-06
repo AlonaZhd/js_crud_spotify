@@ -4,32 +4,25 @@
     
 .main__content {
     @extend .column;
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     max-width: 700px;
     padding: s.space(9) s.space(1);
     gap: s.space(15);
-
-    border: 1px solid #fff;
 }
 
 .playlist {
+
     .title {
+        @extend .title--center;
         font-size: s.size(textSubtitle);
-    }
-}
-
-.add-button {
-    @extend .row;
-
-    .icon {
-        padding: s.space(6);
-        background-color: #242424;
-        margin-right: s.space(6);
     }
 }
 
 .track-list {
     @extend .column;
     gap: s.space(8);
+    padding: s.space(6) s.space(8);
+    border-radius: s.space(2);
+    background-color: #282828;
 }
