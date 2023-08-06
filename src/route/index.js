@@ -71,6 +71,48 @@ Track.create(
   'Jerry Heil & Ochman',
   '/img/image_636.jpg',
 )
+Track.create(
+  'Інь Янь',
+  'MONATIK і ROXOLANA',
+  '/img/image_627.jpg',
+)
+Track.create(
+  'Baila Conmigo (Remix)',
+  'Selena Gomez і Rauw Alejandro',
+  '/img/image_630.jpg',
+)
+Track.create(
+  'Shameless ',
+  'Camila Cabello ',
+  '/img/image_629.jpg',
+)
+Track.create(
+  'DÁKITI',
+  'BAD BUNNY і JHAY',
+  '/img/image_628.jpg',
+)
+Track.create('11 PM', 'Maluma', '/img/image_631.jpg')
+Track.create(
+  'Порічка',
+  'YAKTAK x KOLA',
+  '/img/image_632.jpg',
+)
+Track.create(
+  'Там У Тополі',
+  'Артем Пивоваров & NK',
+  '/img/image_633.jpg',
+)
+Track.create('Додому', 'Wellboy', '/img/image_634.jpg')
+Track.create(
+  'Люди',
+  'MamaRika & KOLA',
+  '/img/image_635.jpg',
+)
+Track.create(
+  'BRONIA',
+  'Jerry Heil & Ochman',
+  '/img/image_636.jpg',
+)
 
 console.log(Track.getList())
 
@@ -349,7 +391,7 @@ router.get('/spotify-track-delete', function (req, res) {
 router.get('/spotify-track-add', function (req, res) {
   const playlistId = Number(req.query.playlistId)
   const playlist = Playlist.getById(playlistId)
-  // const allTracks = Track.getList()
+  const allTracks = Track.getList()
 
   console.log(playlistId, playlist, allTracks)
 
